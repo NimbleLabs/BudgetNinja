@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   resources :invitations
   get 'admin', to: "admin#index"
   get 'account', to: "account#index"
-  devise_for :users, :path_names => { :sign_in => 'sign-in', :sign_up => 'register', :sign_out => 'logout' }
+
+  devise_for :users, path_names: {sign_in: 'sign-in', sign_up: 'register', sign_out: 'logout'},
+             controllers: {registrations: 'registrations'}
+
   root to: "home#index"
 
   namespace :api do

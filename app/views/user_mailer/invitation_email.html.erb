@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h1>You're invited to join Budget Ninja!</h1>
+<p>
+  <%= link_to 'Join Now!', new_user_registration_url + "?uuid=#{@invitation.uuid}" %>
+</p>
+<p>
+  Can't wait,
+
+  <br><br>
+
+  -- The Budget Ninja!
+</p>
+</body>
+</html>

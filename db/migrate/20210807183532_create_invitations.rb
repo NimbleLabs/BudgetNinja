@@ -8,7 +8,7 @@ class CreateInvitations < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_column :users, :invitee_uuid, :string
+    add_column :users, :invitation_uuid, :string
     add_index :invitations, :uuid
   end
 end

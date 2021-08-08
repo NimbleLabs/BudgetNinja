@@ -26,6 +26,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <% if @invitation.present? %>
+    <%= f.hidden_field(:invitation_uuid, value: @invitation.uuid) %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

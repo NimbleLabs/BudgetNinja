@@ -11,4 +11,7 @@
 class Family < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
+
+  has_many :invitations
+  has_many :users
 end

@@ -10,7 +10,6 @@
 #  updated_at :datetime         not null
 #
 class Invitation < ApplicationRecord
-
   belongs_to :family
 
   validates_presence_of :email, :family

@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_08_07_183532) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "family_id"
-    t.string "invitee_uuid"
+    t.string "invitation_uuid"
     t.index ["auth_token"], name: "index_users_on_auth_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

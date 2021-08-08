@@ -1,9 +1,11 @@
 class InvitationsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_family
   before_action :set_invitation, only: %i[ show edit update destroy ]
 
   # GET /invitations or /invitations.json
   def index
-    @invitations = Invitation.all
+    @invitations = @current_family.invitations
   end
 
   # GET /invitations/1 or /invitations/1.json
@@ -22,9 +24,11 @@ class InvitationsController < ApplicationController
   # POST /invitations or /invitations.json
   def create
     @invitation = Invitation.new(invitation_params)
+    @invitation.family_id = @current_family.id
 
     respond_to do |format|
       if @invitation.save
+        UserMailer.invitation_email(@invitation).deliver_later
         format.html { redirect_to @invitation, notice: "Invitation was successfully created." }
         format.json { render :show, status: :created, location: @invitation }
       else
@@ -64,6 +68,6 @@ class InvitationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invitation_params
-      params.require(:invitation).permit(:email, :family_id, :uuid)
+      params.require(:invitation).permit(:email)
     end
 end

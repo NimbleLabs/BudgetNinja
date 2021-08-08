@@ -1,2 +1,4 @@
-<h1>Account#index</h1>
-<p>Find me in app/views/account/index.html.erb</p>
+<h1>Budgen Ninja Account</h1>
+<p><strong>Family: </strong> <%= current_user.family.name %></p>
+
+<p><%= link_to 'Invite Family Members', invitations_path %></p>

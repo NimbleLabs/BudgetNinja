@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
 
   def invitation_email(invitation)
     @invitation = invitation
-    mail(to: @user.email, subject: "You're Invited to Join Budget Ninja!")
+    mail(to: @invitation.email, subject: "You're Invited to Join Budget Ninja!")
   end
 
 end

@@ -5,15 +5,5 @@
   <%= @invitation.email %>
 </p>
 
-<p>
-  <strong>Family:</strong>
-  <%= @invitation.family_id %>
-</p>
-
-<p>
-  <strong>Uuid:</strong>
-  <%= @invitation.uuid %>
-</p>
-
 <%= link_to 'Edit', edit_invitation_path(@invitation) %> |
 <%= link_to 'Back', invitations_path %>

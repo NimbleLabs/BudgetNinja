@@ -16,7 +16,7 @@ class Invitation < ApplicationRecord
   before_create :generate_token
   after_create :send_invitation_email
 
-  validates_email_format_of :email, :message => 'is not a valid email address'
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 
   def send_invitation_email
     # UserMailer.invitee(self).deliver_later

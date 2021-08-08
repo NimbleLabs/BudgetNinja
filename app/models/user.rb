@@ -35,6 +35,8 @@ class User < ApplicationRecord
 
   validates_presence_of :name
   enum role: [:user, :owner, :admin]
+
+  before_validation :init_family, on: :create
   before_create :on_before_create
   after_create :on_after_create
 
@@ -43,19 +45,25 @@ class User < ApplicationRecord
     name.split(" ").length > 1 ? name.split(" ")[1] : ""
   end
 
+  private
+
+  def init_family
+    if invitation_uuid.present?
+      invitation = Invitation.find_by_uuid(invitation_uuid)
+      self.family = invitation.family
+    elsif name.present?
+      puts '**********************************************'
+      puts 'creating family: ' + last_name.titleize
+      puts '**********************************************'
+      self.family = Family.create(name: last_name.titleize)
+    end
+  end
+
   def on_before_create
     self.auth_token = SecureRandom.hex.to_s
   end
 
   def on_after_create
-    if invitation_uuid.present?
-      invitation = Invitation.find_by_uuid(invitation_uuid)
-      update(family_id: invitation.family.id)
-    else
-      new_family = Family.create(name: last_name.titleize)
-      update(family_id: new_family.id)
-    end
-
     UserMailer.welcome_email(self).deliver_later
   end
 end

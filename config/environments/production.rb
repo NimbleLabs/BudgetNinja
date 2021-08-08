@@ -119,6 +119,16 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   #
 
-  config.action_mailer.default_url_options = { host: 'thebudgetninja.com' }
+  config.action_mailer.default_url_options = { host: 'www.thebudgetninja.com', :protocol => 'https' }
+
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => 587,
+    :authentication => :plain,
+    :user_name      => 'apikey',
+    :password       => ENV['SENDGRID_API_KEY'],
+    :domain         => 'www.webase.com',
+    :enable_starttls_auto => true
+  }
 
 end

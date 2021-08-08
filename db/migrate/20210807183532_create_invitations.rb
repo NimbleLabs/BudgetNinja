@@ -4,6 +4,7 @@ class CreateInvitations < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :uuid
       t.references :family, foreign_key: true
+      t.string :slug, index: true, unique: true
 
       t.timestamps
     end

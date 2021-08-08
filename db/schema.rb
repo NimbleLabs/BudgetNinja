@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(version: 2021_08_07_183532) do
     t.string "email"
     t.string "uuid"
     t.bigint "family_id"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["family_id"], name: "index_invitations_on_family_id"
+    t.index ["slug"], name: "index_invitations_on_slug"
     t.index ["uuid"], name: "index_invitations_on_uuid"
   end
 

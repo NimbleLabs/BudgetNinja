@@ -52,9 +52,6 @@ class User < ApplicationRecord
       invitation = Invitation.find_by_uuid(invitation_uuid)
       self.family = invitation.family
     elsif name.present?
-      puts '**********************************************'
-      puts 'creating family: ' + last_name.titleize
-      puts '**********************************************'
       self.family = Family.create(name: last_name.titleize)
     end
   end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :transactions
+  resources :categories
   resources :invitations
   get 'admin', to: "admin#index"
   get 'account', to: "account#index"
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, format: :json do
+
+      resources :transactions
 
       devise_scope :user do
         post 'login', to: 'sessions#create'

@@ -6,6 +6,7 @@
 #  email      :string
 #  uuid       :string
 #  family_id  :bigint
+#  slug       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

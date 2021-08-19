@@ -15,6 +15,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @transaction.transaction_date = Date.today
   end
 
   # GET /transactions/1/edit
